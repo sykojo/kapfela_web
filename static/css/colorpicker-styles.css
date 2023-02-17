@@ -1,0 +1,136 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+/*--------main-conainer-contains-two-form-containers*/
+.main-container{
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  position: relative;
+  flex-wrap: wrap;
+}
+
+.form-container{
+  width: 500px;
+  height: 500px;
+  
+  flex-wrap: wrap;
+  display: inline-block;
+  justify-content: space-around;
+  align-items: center;
+  gap: 300px;
+  
+}
+
+.ch-col-button{
+position: absolute;
+top: 250px;
+width: 250px;
+height: 75px;
+font-size: 23px;
+border-radius: 15px;
+}
+
+.col-label{
+font-family: 'Poppins' sans-serif;
+font-size: 45px;
+position: absolute;
+cursor: pointer;
+top: 75px;
+background-color: #fff;
+padding: 25px;
+border-radius: 15px;
+
+}
+
+.form{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: column;
+  position: relative;
+}
+
+/*------ Style for color-picker ------*/
+#style1 {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  width: 600px;
+  height: 400px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+#style1::-webkit-color-swatch {
+  border-radius: 15px;
+  border: none;
+}
+#style1::-moz-color-swatch {
+  border-radius: 15px;
+  border: none;
+}
+#style2 {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  width: 600px;
+  height: 400px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+#style2::-webkit-color-swatch {
+  border-radius: 15px;
+  border: none;
+}
+#style2::-moz-color-swatch {
+  border-radius: 15px;
+  border: none;
+}
+
+/*
+.container{
+  height: 100vh;
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+  gap: 50px;
+}
+
+
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 35px;
+}
+
+label {
+  font-family: "Poppins", sans-serif;
+  font-size: 25px;
+  cursor: pointer;
+  background-color: rgb(139, 168, 247);
+  margin: 15px;
+  padding: 15px;
+  border-radius: 10px;
+  border: none;
+}
+
+input {
+  position: absolute;
+  width: 100px;
+  height: 40px;
+  z-index: -1;
+}
+
+.column {
+  width: 50%;
+  float: left;
+}
+*/
+

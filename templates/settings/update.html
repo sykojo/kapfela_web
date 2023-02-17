@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block header %}
+    {# DataTable #}
+    <script type="text/javascript" src="{{ url_for('static', filename='js/datatables.min.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/datatables.bootstrap.min.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/progress_bar.js') }}"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/datatables.bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/progress-bar.css') }}">
+{% endblock %}
+
+{% block content %}
+<style>
+    .update-button{
+        margin: 20px;
+        padding: 10px;
+      }
+          
+</style>
+
+<body>
+    <div class="container text-center">
+    <div class="row">
+        <div class="col update-button">
+            <form action="/pull_gui" method="post">
+                <input type="submit" value="Pull from Gui Repo">
+            </form>
+        </div>
+        <div class="col update-button">
+            <form action="/pull_microcontroller" method="post">
+                <input type="submit" value="Pull from Microcontroller repo">
+            </form>
+        </div>
+        <div class="col update-button">
+            <form action="/send_to_device" method="post">
+                <input type="submit" value="Update all devices">
+            </form>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            
+            <div id="progress-container">
+              <div id="progress">0%</div>
+            </div>
+            <button id="start-button">Start</button>
+        </div>
+    </div>
+</div>
+{%endblock%}

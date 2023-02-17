@@ -1,0 +1,16 @@
+.vscode
+.idea
+.class
+*.recovery
+*.status
+__pycache__
+*.pyc
+*.pdf
+*.db
+*.png
+*.txt
+*.sqlite
+
+/env
+/venv
+/env

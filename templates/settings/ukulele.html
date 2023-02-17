@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+
+{% block header %}
+    {# DataTable #}
+    <script type="text/javascript" src="{{ url_for('static', filename='js/datatables.min.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/datatables.bootstrap.min.js') }}"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/datatables.bootstrap.min.css') }}">
+    <link rel = "stylesheet" href="{{url_for('static',filename = 'css/ukulele_settings.css')}}">
+{% endblock %}
+
+<div class="row">
+  <div class="column"></div>
+  <div class="column"></div>
+</div>
+
+{% block content %}
+<form method="POST" id="form-submit" class="form">
+  <div class="row">
+    <div class="column">
+      <div class="form-container">
+        <label for="angle_low_1">Výchozí úhel 1. trsátka:</label>
+        <input id="angle_low_1" type="number" name="angle_low_1" value="{{angle_pics_low[0]}}" step="1" min="0" max="180" required />
+        <span class="validity"></span>
+      </div>
+      <div class="form-container">
+        <label for="angle_low_2">Výchozí úhel 2. trsátka:</label>
+        <input id="angle_low_2" type="number" name="angle_low_2" value="{{angle_pics_low[1]}}" step="1" min="0" max="180" required />
+        <span class="validity"></span>
+      </div>
+      <div class="form-container">
+        <label for="angle_low_3">Výchozí úhel 3. trsátka:</label>
+        <input id="angle_low_3" type="number" name="angle_low_3" value="{{angle_pics_low[2]}}" step="1" min="0" max="180" required />
+        <span class="validity"></span>
+      </div>
+      <div class="form-container">
+        <label for="angle_low_4">Výchozí úhel 4. trsátka:</label>
+        <input id="angle_low_4" type="number" name="angle_low_4" value="{{angle_pics_low[3]}}" step="1" min="0" max="180" required />
+        <span class="validity"></span>
+      </div>
+    </div>
+    <div class="column" background-color: #f0f0f0>
+      <div class="form-container">
+        <label for="angle_high_1">Druhý úhel 1. trsátka:</label>
+        <input id="angle_high_1" type="number" name="angle_high_1" value="{{angle_pics_high[0]}}" step="1" min="0" max="180" required />
+        <span class="validity"></span>
+      </div>
+      <div class="form-container">
+        <label for="angle_high_2">Druhý úhel 2. trsátka:</label>
+        <input id="angle_high_2" type="number" name="angle_high_2" value="{{angle_pics_high[1]}}" step="1" min="0" max="180" required />
+        <span class="validity"></span>
+      </div>
+      <div class="form-container">
+        <label for="angle_high_3">Druhý úhel 3. trsátka:</label>
+        <input id="angle_high_3" type="number" name="angle_high_3" value="{{angle_pics_high[2]}}" step="1" min="0" max="180" required />
+        <span class="validity"></span>
+      </div>
+      <div class="form-container">
+        <label for="angle_high_4">Druhý úhel 4. trsátka:</label>
+        <input id="angle_high_4" type="number" name="angle_high_4" value="{{angle_pics_high[3]}}" step="1" min="0" max="180" required />
+        <span class="validity"></span>
+      </div> 
+      <div>
+        <input type="submit" value="Potvrdit" class=bottomright/>
+      </div>     
+    </div>
+  </div>
+</form>
+
+{% endblock %}

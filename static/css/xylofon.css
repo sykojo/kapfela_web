@@ -1,0 +1,26 @@
+.button {
+    border:none;
+    color:black;
+    text-align: center;
+    font-size:15px;
+    margin: 2px 2px;
+    cursor:pointer;
+}
+.button_1 { padding: 150px 30px; background-color:#000080; color:black;border:3px solid#000000;border-radius: 12px;}
+.button_2 { padding: 140px 30px; background-color:#00FF00; color:black;border:3px solid#000000;border-radius: 12px;}
+.button_3 { padding: 130px 30px; background-color:#FFFF00; color:black;border:3px solid#000000;border-radius: 12px;}
+.button_4 { padding: 120px 30px; background-color:#FF5422; color:black;border:3px solid#000000;border-radius: 12px;}
+.button_5 { padding: 110px 30px; background-color:#FF0000; color:black;border:3px solid#000000;border-radius: 12px;}
+.button_6 { padding: 100px 30px; background-color:#800080; color:black;border:3px solid#000000;border-radius: 12px;}
+.button_7 { padding: 90px 30px; background-color:#FFFFFF; color:black;border:3px solid#000000;border-radius: 12px;}
+.button_8 { padding: 80px 30px; background-color:#000080; color:black;border:3px solid#000000;border-radius: 12px;}
+
+.col {width: 10%}
+.posun_dolu {padding-top: 100px; }
+
+.button-pisne {width: 300px; height: 50px; margin: 0px 10px; padding-top:10px; text-align: center; background-color:#FFFFFF; color: #D67A47;
+    border:3px solid #D67A47;border-radius: 12px;box-shadow: 2px 2px 2px 2px #D67A47;}
+.button-pisne:hover {background: #D67A47; color: #FFFFFF;}
+a.pisne { color: #D67A47;}
+a.pisne:hover { color: #FFFFFF;}
+

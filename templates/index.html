@@ -1,0 +1,104 @@
+{% extends "base.html" %}
+
+{% block header %}
+    {# DataTable #}
+    <script type="text/javascript" src="{{ url_for('static', filename='js/datatables.min.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/datatables.bootstrap.min.js') }}"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/datatables.bootstrap.min.css') }}">
+{% endblock %}
+
+{% block content %}
+<!--------------------------------COVER-------------------------------------------------->
+    <div class="row text-center">
+        <div class="col-6">
+            <h4>{{ selection }}</h4>
+            <img src="{{ url_for('static', filename='cover/' + artist) + ".jpg" }}" width="400" alt="">
+
+            <br/><br/>
+            <a href="javascript:send_song('{{ selection }}')" class="btn btn-outline-success">Send to device</a>
+            &nbsp;&nbsp;&nbsp;
+            <a href="javascript:stop_song()" class="btn btn-outline-success">Stop</a>
+            <br/>
+            <div id="message"></div>
+            <br/>
+            <div id="instruments"></div>
+        </div>
+<!-------------------------------TABLE----------------------------------------------->
+        <div class="col-5">
+            <table class="table table-sm text-left display" id="songs">
+                <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Name</th>
+                    <th class="text-center" scope="col">Counter</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for song in songs %}
+                {% if selection == song['name'] %}
+                    <tr class="table-success">
+                {% else %}
+                    <tr>
+                {% endif %}
+                        <td class="text-left"><a href="counter_increase?song={{ song['name'] }}">{{ song['name'] }}</a></td>
+                        <td class="text-center">{{ song['counter'] }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+            <script>
+                $(document).ready(function() {
+                    $('#songs').DataTable( {
+                        "paging": true,
+                        "lengthMenu": [[25, 50, -1], [25, 50, "All"]],
+                        "order": [[ 0, "desc" ]],
+                        "ordering": true,
+                        "info": false,
+                        stateSave: true
+                    } );
+                } );
+
+                function send_song(song) {
+                    $.ajax({
+                        type: "POST",
+                        url: "/send_song",
+                        data: {song: song},
+                        dataType: "html",
+                        success: function(msg) {
+                            $("#message").html(msg);
+                        },
+                        error: function (xhr, status, error) {
+                            console.log(error);
+                        }
+                    });
+                }
+
+                function stop_song() {
+                    $.ajax({
+                        type: "POST",
+                        url: "/stop_song",
+                        success: function(msg) {
+                            $("#message").html(msg);
+                        },
+                        error: function (xhr, status, error) {
+                            console.log(error);
+                        }
+                    });
+                }
+
+                window.setInterval(function(){
+                    $.ajax({
+                        type: "GET",
+                        url: "/alive",
+                        success: function(msg) {
+                            $("#instruments").html(msg);
+                        },
+                        error: function (xhr, status, error) {
+                            console.log(error);
+                        }
+                    });
+                }, 1000)
+                
+            </script>
+        </div>
+    </div>
+{% endblock %}

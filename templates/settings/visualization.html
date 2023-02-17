@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block header %}
+    {# DataTable #}
+    <script type="text/javascript" src="{{ url_for('static', filename='js/datatables.min.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/datatables.bootstrap.min.js') }}"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/datatables.bootstrap.min.css') }}">
+{% endblock %}
+
+{% block content %}
+<!-------------Colorpicker--------------->
+-->
+
+<div class="container-xl">
+  
+  <!----Choose color on press ---->
+  <div class="row">
+  <div class="col form-container">
+    <form method="POST" id="form-submit" class="form">
+      <input type="color" name="on-press-color" id="style1" value="{{on_press_color}}" form="form-submit" class="col-input">
+      <label for="style1" class="col-label">Fret color</label>
+      <button type="submit" id="change-fret-color-button" class="btn btn-secondary ch-col-button" form="form-submit">Change color</button>
+    </form>
+  </div>
+
+  <!----Choose background color---->
+  <div class="col form-container">
+    <form method="POST" id="form-submit" class="form">
+      <input type="color" name="background-color" id="style2" value="{{background_color}}" form="form-submit" class="col-input">
+      <label for="style2" class="col-label">Background color</label>
+      <button type="submit" id="change-background-color-button" class="btn btn-secondary ch-col-button" form="form-submit">Change color</button>
+    </form>
+  </div>
+  </div>
+</div>
+
+{% endblock %}

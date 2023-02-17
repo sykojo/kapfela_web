@@ -1,0 +1,205 @@
+{% extends "base.html" %}
+
+{% block header %}
+    {# DataTable #}
+    <script type="text/javascript" src="{{ url_for('static', filename='js/datatables.min.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/datatables.bootstrap.min.js') }}"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/datatables.bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/xylofon.css') }}" />
+{% endblock %}
+
+{% block content %}
+  <h4>XYLOFON</h4>
+    <br/><br/>
+    <br/><br/>
+    <br/><br/>
+    <br/><br/>
+    <br/><br/>
+
+
+    <div class="container px-8 py-8">
+        <div class="row">
+            <div class="col mx-1"><a href="javascript:button_1()" class="button button_1">C</a></div>
+            <div class="col mx-1"><a href="javascript:button_2()" class="button button_2">D</a></div>
+            <div class="col mx-1"><a href="javascript:button_3()" class="button button_3">E</a></div>
+            <div class="col mx-1"><a href="javascript:button_4()" class="button button_4">F</a></div>
+            <div class="col mx-1"><a href="javascript:button_5()" class="button button_5">G</a></div>
+            <div class="col mx-1"><a href="javascript:button_6()" class="button button_6">A</a></div>
+            <div class="col mx-1"><a href="javascript:button_7()" class="button button_7">H</a></div>
+            <div class="col mx-1"><a href="javascript:button_8()" class="button button_8">C</a></div>
+        </div>
+    </div>
+    <br/><br/>
+    <br/><br/>
+    <div class="container px-5 py-5">
+        <div class="row posun_dolu">
+            <div class="col mx-1 button-pisne"><a href="javascript:button_9()" class="pisne"> SKÁKAL PES </a></div>
+            <div class="col mx-1 button-pisne"><a href="javascript:button_10()" class="pisne"> SNĚŽÍ, SNĚŽÍ </a></div>
+            <div class="col mx-1 button-pisne"><a href="javascript:button_11()" class="pisne"> ZLATÁ BRÁNA </a></div>
+            <div class="col mx-1 button-pisne"><a href="javascript:button_12()" class="pisne"> OVČÁCI, ČTVERÁCI </a></div>
+            <div class="col mx-1 button-pisne"><a href="javascript:button_13()" class="pisne"> PRŠÍ, PRŠÍ </a></div>
+        </div>
+    </div>
+    <br/><br/>
+
+        <script>
+            function button_1() {
+
+                  $.ajax({
+                    type: "POST",
+                    url: "/xylofon_button_1",
+                    success: function(msg) {
+                        $("#message").html(msg);
+                    },
+                    error: function (xhr, status, error) {
+                        console.log(error);
+                    }
+                });
+            }
+            function button_2() {
+                $.ajax({
+                    type: "POST",
+                    url: "/xylofon_button_2",
+                    success: function(msg) {
+                        $("#message").html(msg);
+                    },
+                    error: function (xhr, status, error) {
+                        console.log(error);
+                    }
+                });
+            }
+            function button_3() {
+                $.ajax({
+                    type: "POST",
+                    url: "/xylofon_button_3",
+                    success: function(msg) {
+                        $("#message").html(msg);
+                    },
+                    error: function (xhr, status, error) {
+                        console.log(error);
+                    }
+                });
+            }
+            function button_4() {
+                $.ajax({
+                    type: "POST",
+                    url: "/xylofon_button_4",
+                    success: function(msg) {
+                        $("#message").html(msg);
+                    },
+                    error: function (xhr, status, error) {
+                        console.log(error);
+                    }
+                });
+            }
+            function button_5() {
+                $.ajax({
+                    type: "POST",
+                    url: "/xylofon_button_5",
+                    success: function(msg) {
+                        $("#message").html(msg);
+                    },
+                    error: function (xhr, status, error) {
+                        console.log(error);
+                    }
+                });
+            }
+            function button_6() {
+                $.ajax({
+                    type: "POST",
+                    url: "/xylofon_button_6",
+                    success: function(msg) {
+                        $("#message").html(msg);
+                    },
+                    error: function (xhr, status, error) {
+                        console.log(error);
+                    }
+                });
+            }
+            function button_7() {
+                $.ajax({
+                    type: "POST",
+                    url: "/xylofon_button_7",
+                    success: function(msg) {
+                        $("#message").html(msg);
+                    },
+                    error: function (xhr, status, error) {
+                        console.log(error);
+                    }
+                });
+            }
+            function button_8() {
+                $.ajax({
+                    type: "POST",
+                    url: "/xylofon_button_8",
+                    success: function(msg) {
+                        $("#message").html(msg);
+                    },
+                    error: function (xhr, status, error) {
+                        console.log(error);
+                    }
+                });
+            }
+            function button_9() {
+                $.ajax({
+                    type: "POST",
+                    url: "/xylofon_button_9",
+                    success: function(msg) {
+                        $("#message").html(msg);
+                    },
+                    error: function (xhr, status, error) {
+                        console.log(error);
+                    }
+                });
+            }
+            function button_10() {
+                $.ajax({
+                    type: "POST",
+                    url: "/xylofon_button_10",
+                    success: function(msg) {
+                        $("#message").html(msg);
+                    },
+                    error: function (xhr, status, error) {
+                        console.log(error);
+                    }
+                });
+            }
+            function button_11() {
+                $.ajax({
+                    type: "POST",
+                    url: "/xylofon_button_11",
+                    success: function(msg) {
+                        $("#message").html(msg);
+                    },
+                    error: function (xhr, status, error) {
+                        console.log(error);
+                    }
+                });
+            }
+            function button_12() {
+                $.ajax({
+                    type: "POST",
+                    url: "/xylofon_button_12",
+                    success: function(msg) {
+                        $("#message").html(msg);
+                    },
+                    error: function (xhr, status, error) {
+                        console.log(error);
+                    }
+                });
+            }
+            function button_13() {
+                $.ajax({
+                    type: "POST",
+                    url: "/xylofon_button_13",
+                    success: function(msg) {
+                        $("#message").html(msg);
+                    },
+                    error: function (xhr, status, error) {
+                        console.log(error);
+                    }
+                });
+            }
+        </script>
+    </div>
+{% endblock %}

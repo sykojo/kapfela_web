@@ -1,0 +1,13 @@
+#progress-container {
+  width: 500px;
+  height: 20px;
+  border: 1px solid black;
+  margin: 50px auto;
+}
+
+#progress {
+  height: 100%;
+  background-color: green;
+  color: white;
+  text-align: center;
+}

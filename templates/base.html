@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    {# bootstrap #}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}" crossorigin="anonymous">
+
+    {# fontawesome #}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/fontawesome.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/fontawesome_solid.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/fontawesome_brands.min.css') }}">
+
+    {# Optional JavaScript - jQuery first, then Popper.js, then Bootstrap JS#}
+    <script src="{{ url_for('static', filename='js/jquery-3.4.1.min.js') }}" crossorigin="anonymous"></script>
+    <script src="{{ url_for('static', filename='js/popper.min.js') }}" crossorigin="anonymous"></script>
+    <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}" crossorigin="anonymous"></script>
+    
+    {#Stylesheets for colorpicker page#}
+    <link rel = "stylesheet" href="{{url_for('static',filename = 'css/colorpicker-styles.css')}}">
+    <link rel="stylesheet" href="{{url_for('static',filename='css/google-styles.css')}}">
+
+    {#Ukulele settings page#}
+    <link rel = "stylesheet" href="{{url_for('static',filename = 'css/ukulele_settings.css')}}">
+
+
+    <style>
+        body {
+            min-height: 75rem;
+            padding-top: 4.5rem;
+        }
+        .dropdown:hover .dropdown-menu {
+            display: block;
+            margin-top: 0; 
+         }
+    </style>
+
+    {% block header %}
+    {% endblock %}
+
+    <title>KapFELa</title>
+</head>
+
+<body>
+{% block navigation %}
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+        <a class="navbar-brand" href="/">KapFELa</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item {% if request.path=="/" %} active {% endif %}">
+                    <a class="nav-link" href="/">Index</a>
+                </li>
+                <li class="nav-item {% if request.path=="/alphatab" %} active {% endif %}">
+                    <a class="nav-link" href="/alphatab">Notes and Tabs</a>
+                </li>
+                <li class="nav-item {% if request.path=="/song" %} active {% endif %}">
+                    <a class="nav-link" href="/song">JSON (odkaz nebude viditelny)</a>
+                </li>
+                <li class="nav-item {% if request.path=="/xylofon" %} active {% endif %}">
+                    <a class="nav-link" href="/xylofon">Xylofon</a>
+                </li>
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Settings</a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item {% if request.path=="/settings_ukulele" %} active {% endif %}" href="/settings_ukulele" id="navbarDropdown" role="button">Ukulele</a>
+                        <a class="dropdown-item {% if request.path=="/settings_visualization" %} active {% endif %}" href="/settings_visualization" id="navbarDropdown" role="button">Visualization</a>
+                        <a class="dropdown-item {% if request.path=="/update" %} active {% endif %}" href="/update" id="navbarDropdown" role="button">Update</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+{% endblock %}
+
+{% block flash_messages %}
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                {% if category == 'success' %}
+                    <div class="alert alert-success alter-dismissable fade show" role="alert" >
+                        {{ message }}
+                        <button type="button" class="close" data-dismiss="alert">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    {% else %}
+                    <div class="alert alert-danger alter-dismissable fade show" role="alert" >
+                        {{ message }}
+                        <button type="button" class="close" data-dismiss="alert">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    {% endif %}
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+{% endblock %}
+
+<div class="container-fluid text-left">
+    {% block content %}
+    {% endblock %}
+
+    <footer>
+        {% block footer %}
+            <hr>
+            <div class="footer text-center">
+                <p>&copy; KEP FEL</p>
+            </div>
+        {% endblock %}
+    </footer>
+</div>
+
+{% block script %}
+{% endblock %}
+<script>
+    $(document).ready(function() {
+        $('.alert').fadeIn('fast').delay(3000).fadeOut('fast');
+    });
+    </script>
+    
+</body>
+</html>
