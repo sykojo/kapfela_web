@@ -2,21 +2,31 @@ from flask import Blueprint
 import time
 import paho.mqtt.client as mqtt
 from time import time_ns
+import json
+import requests
+from time import sleep
 
 
 class InstrumentAlive():
     def __init__(self):
-        self.current_time = time_ns() + 3600000000000
-        self.instruments_list = ["uku","cajon","vizualizace","bass","guitar"]
-        self.states_list = ['-',self.current_time]
-        self.instruments = {}
+        self.json_file = "db/instruments.json"
+        self.current_time = time_ns() + 3600000000000 
+        self.instruments = []
         self._client = mqtt.Client()
         self.functions_of_instruments = ["send_status",
                                          "send_time"]
+        '''Creating a table with all instruments and their statuses from json file'''
+        with open(self.json_file,"r") as f:
+            data = json.load(f)
+            for instrument_data in data:
+                instrument = {
+                    "name": instrument_data["name"],
+                    "status": instrument_data["state"],
+                    "time": self.current_time
+                }
+                self.instruments.append(instrument)
         
-        '''Creating a table with all instruments and their statuses'''
-        for instrument in self.instruments_list:
-            self.instruments[instrument] = self.states_list
+        
         
         self.NTP_EPOCH_OFFSET = 946684800000000000
         self.MAX_TIME_DIFFERENCE = 30000000000#ns -> 30s
@@ -24,10 +34,53 @@ class InstrumentAlive():
     
     def _mqtt_subscribe(self):
         """Subscribe to all instruments and their functions"""
-        for instrument in self.instruments:
+        for instrument_data in self.instruments:
             for function in self.functions_of_instruments:
-                self._client.subscribe(f"kapfela/{instrument}/{function}") 
-                print(f"Subscribed to topic: kapfela/{instrument}/{function} \n")   
+                instrument = instrument_data["name"]  
+                self._client.subscribe(f"kapfela/{instrument}/{function}")
+                print(f"Subscribed to topic: kapfela/{instrument}/{function}")
+                
+    def get_instrument_names(self):
+        instruments_names_list = []
+        for instrument in self.instruments:
+            instruments_names_list.append(instrument["name"])
+        return instruments_names_list 
+                
+            
+    def update_instruments_table(self,instrument,data_type,msg):
+        for instrument_data in self.instruments:
+            if instrument_data["name"] == instrument:
+                instrument_data[data_type] = msg
+                break
+            
+    def update_json(self, instrument, msg):
+        with open(self.json_file, "r+") as f:
+            data = json.load(f)
+            for instrument_data in data:
+                if instrument_data["name"] == instrument:
+                    instrument_data["state"] = msg
+                    break
+            f.seek(0)
+            json.dump(data, f)
+            f.truncate()
+    
+    def get_status_from_json(self,instrument):
+        with open(self.json_file,"r") as f:
+            data = json.load(f)
+            for instrument_data in data:
+                if instrument_data["name"] == instrument:
+                    status = instrument_data["state"]
+                    break
+        return status
+    '''
+    def update_status_on_web(self):
+        while True:
+            for instrument in self.get_instrument_names():
+                url = "update/update_status/" + instrument
+                status = requests.get(url) 
+            
+            sleep(1)#second
+    '''
     
     def mqtt_on_connect(self, client, userdata, flags, rc):      
         self._mqtt_subscribe()
@@ -43,10 +96,11 @@ class InstrumentAlive():
             
             '''Depending on what topic comes to handler, it determines what function on what instrument to run '''    
             if function == "send_status":
-                self.instruments[instrument][0] = message #Status change
+                self.update_json(instrument,message)
+                self.update_instruments_table(instrument,"state",message)
                 
             elif function == "send_time":
-                self.instruments[instrument][1] = message #Time change
+                self.update_instruments_table(instrument,"time",message)
     
 
     def mqtt_on_publish(self, client, userdata, result):

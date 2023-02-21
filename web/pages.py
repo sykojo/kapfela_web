@@ -127,20 +127,20 @@ def alive():
     out = '<div class="text-center"><table class="table table-lm text-center display" id="songs">'
     out += '<thead class="thead-dark"s><tr><th class="text-left">Instrument</th><th>State</th><th>Time</th></tr></thead>'
     out += '<tbody>' 
-   
-    for key,value in alive_.instruments.items():
-        state = value[0]
-        ts = int(value[1])
+
+    for instrument in alive_.instruments:
+        state = instrument["state"]
+        ts = int(instrument["time"])
         
         elapsed_time_last_message = alive_.current_time - ts - alive_.NTP_EPOCH_OFFSET
         formated_time = datetime.datetime.utcfromtimestamp(ts/1000000000).strftime("%H:%M:%S")
         
         if elapsed_time_last_message > alive_.MAX_TIME_DIFFERENCE or elapsed_time_last_message < -alive_.NTP_EPOCH_OFFSET:
-            state:"Disconnected"
+            state = "Disconnected"
             
-        print(key)
+        print(instrument["name"])
         print(elapsed_time_last_message)
-        out += f'<tr><td class="text-left">{key}</td><td>{state}</td><td>{formated_time}</td></tr>'
+        out += f'<tr><td class="text-left">{instrument["name"]}</td><td>{state}</td><td>{formated_time}</td></tr>'
 
     return out
 

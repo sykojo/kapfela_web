@@ -6,6 +6,7 @@ from web.pages import bp_index
 from web.settings import bp_settings
 from web.xylofon import bp_xylofon
 from web.update import bp_update
+from web.song_select import bp_song_select
 
 app = Flask(__name__)
 
@@ -21,6 +22,7 @@ app.register_blueprint(bp_index)
 app.register_blueprint(bp_settings)
 app.register_blueprint(bp_xylofon)
 app.register_blueprint(bp_update)
+app.register_blueprint(bp_song_select)
 app.config['SECRET_KEY'] = 'secret!'
 
 if __name__ == '__main__':
